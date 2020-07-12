@@ -1,0 +1,10 @@
+今日学习：
+    1. resultType 相同列名给相同属性名
+    2. 给类型取别名
+        2.1 typeAlias
+        2.2 package
+        两者都在<typeAliases>标签下
+    3. 返回类型是Map时，只能返回一行记录
+    4. resultMap的使用，列名跟属性名不同时使用
+    5. 解决列名属性名不同的另一种方法 (as)
+        select id as myId ,name as myName ....

@@ -1,0 +1,5 @@
+今天所学知识点：
+    1. 配置文件（mapper、conf）
+    2. 创建sqlSession对象执行sql标识的语句
+    3. select标签用法
+    4. like模糊匹配

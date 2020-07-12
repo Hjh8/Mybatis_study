@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    指定约束文件，mybatis-3-mapper.dtd是约束文件名
+    约束文件的作用：判断当前文件出现的标签是否符合mybatis的要求
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    sql映射文件：写sql语句，mybatis会来这里执行sql语句
+-->
+
+<!--
+    sql语句都写在mapper里，namespace命名空间：自定义的名称，一般为对应dao接口的全限定名
+-->
+<mapper namespace="dao.StudentDao">
+    <!--
+        在这里可以用特定的标签表示对数据库的特定操作，如：
+        <select>查询 <update>更新 <insert>插入 <delete>删除
+    -->
+    <!--  select
+            id：执行sql语法的唯一标识，一般为Dao接口里面的方法名。mybatis会根据这个来找到要执行的sql语句
+            resultType：指定结果类型。mybatis会自动把ResultSet里面的每条数据类型转换成resultType指定的类型
+     -->
+    <select id="selectStudents" resultType="entity.Student">
+        select * from student order by id
+    </select>
+    <!--  like模糊匹配，传递%  -->
+    <select id="selectStudentsLikeName" resultType="entity.Student">
+        select * from student where name like #{name}
+        <!--传参时不传%，比较麻烦
+            select * from student where name like "%" #{name} "%"
+        -->
+    </select>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.StudentDao">
+    <!-- 一个简单类型的参数，#{任意字符}接收 -->
+    <select id="selectByID" resultType="entity.Student">
+        select * from student where id=#{aaa}
+    </select>
+    <!--  @Param("名字")，#{名字}接收  -->
+    <select id="selectMultiByParam" resultType="entity.Student">
+        select * from student where name=#{myname} or age=#{myage}
+    </select>
+    <!--  对象传参，#{属性名}接收
+            完整用法 #{属性名，javaType=参数类型，jdbcType=表中该字段的类型}
+            由于mybatis的反射可以获取到这 javaType、jdbcType，所以我们只用简约写法
+     -->
+    <select id="selectMultiByObj" resultType="entity.Student">
+        select * from student where name=#{name} or age=#{age}
+    </select>
+    <!-- 按位置获取参数
+            从左往右，参数位置从0开始
+            在mybatis3.4以前使用#{0}、#{1}的方式获取对应位置的参数
+            3.4及以后使用#{arg0}、#{arg1}的方式获取对应位置的参数
+     -->
+    <select id="selectMultiByPosition" resultType="entity.Student">
+        select * from student where name=#{arg0} or age=#{arg1}
+        <!--select * from student where name=#{param1} or age=#{param2}-->
+    </select>
+    <!-- Map传值 #{key}-->
+    <select id="selectMultiByMap" resultType="entity.Student">
+        select * from student where name=#{myname} or age=#{myage}
+    </select>
+
+</mapper>

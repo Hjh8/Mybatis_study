@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--  环境配置，default：指定mybatis使用哪个环境  -->
+    <environments default="development">
+        <!--  environment：一个数据库信息的配置
+                id：环境的名称，要唯一。
+        -->
+        <environment id="development">
+            <!--  mybatis的事务类型
+                    type：一般选JDBC，表示使用jdbc的Connection对象的commit，rollback来做事务处理
+            -->
+            <transactionManager type="JDBC"/>
+            <!--  数据源，type一般为POOLED，表示使用连接池类型的数据源 -->
+            <dataSource type="POOLED">
+                <!--  数据库的驱动名，mysql8以上要加个cj  -->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <!--  连接数据库的url字符串,如果需要用到& 则需要用 &amp;代替  -->
+                <property name="url" value="jdbc:mysql://localhost:3306/ssm?useSSL=false&amp;serverTimezone=UTC"/>
+                <!--  访问数据库的用户名  -->
+                <property name="username" value="root"/>
+                <!--  访问数据库的密码  -->
+                <property name="password" value="5642818"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--  配置sql映射文件的位置  -->
+    <mappers>
+        <!--  一个mapper只能指定一个映射文件  -->
+        <mapper resource="dao/StudentDao.xml"/>
+<!--        <mapper resource="dao/BlogMapper.xml"/>-->
+        <!--   这里的路径都是从类路径（target/classes）开始的路径信息
+                target/classes/dao/StudentDao.xml
+        -->
+    </mappers>
+</configuration>

@@ -1,0 +1,7 @@
+今日学习：
+    1. insert用法 #{参数名}获取参数
+    2. 配置日志
+    3. 主要类介绍 ctrl+h查看实现类
+    5. 使用@Test，测试项目
+    6. 动态代理 sqlSession.getMapper(dao接口)
+    7. 编写工具类
