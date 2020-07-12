@@ -1,6 +1,5 @@
 今日学习：
     1. 动态sql
-    2. if、where、foreach
+    2. if、where、foreach(<sql> <include>)
     3. 代码片段（可复用）
-    4. 配置文件
-    5. 扩展
+        前提：参数传递要么使用命名参数先命名，要么使用对象传参。

@@ -5,7 +5,7 @@
 
 <mapper namespace="dao.StudentDao">
     <!-- 动态sql sql内容是变化的，可以根据条件获取到不同的sql语句
-            前提：传递的是对象
+            前提：参数传递的是对象、或使用命名参数给参数命名
             实现：<if>、<where>、<foreach>
      -->
     <!-- if 判断条件
@@ -49,5 +49,22 @@
         <foreach collection="array" item="stu" open="(" close=")" separator=",">
             #{stu.age}
         </foreach>
+    </select>
+
+    <!--  sql片段是指，提取出sql代码，使其可以复用
+            使用步骤： 1. 在<sql>标签内创建sql片段  2. 使用<include>来引用sql片段
+     -->
+    <!--  id:sql片段的唯一标识  -->
+    <sql id="stuSql">
+        select * from student
+    </sql>
+    <select id="selectStudentSQL" resultType="entity.Student">
+        <!--  refid：引用哪个sql片段   -->
+        <include refid="stuSql" />
+        <where>
+            <if test="id > 0">
+                id=#{id}
+            </if>
+        </where>
     </select>
 </mapper>

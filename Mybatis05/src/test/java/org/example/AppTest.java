@@ -16,7 +16,7 @@ public class AppTest
     public void selectStudentIfTest()
     {
         Student stu = new Student();
-        stu.setName("xixi");
+//        stu.setName("xixi");
         stu.setAge(18);
         StudentDao dao = MybatisUtil.getSelSession().getMapper(StudentDao.class);
         List<Student> students = dao.selectStudentIf(stu);
@@ -48,5 +48,13 @@ public class AppTest
         StudentDao dao = MybatisUtil.getSelSession().getMapper(StudentDao.class);
         List<Student> students = dao.selectStudentForeach(stus);
         students.forEach(s -> System.out.println(s));
+    }
+    
+    @Test
+    public void selectStudentSQLTest()
+    {
+        StudentDao dao = MybatisUtil.getSelSession().getMapper(StudentDao.class);
+        Student student = dao.selectStudentSQL(2018105555);
+        System.out.println(student);
     }
 }
