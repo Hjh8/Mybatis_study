@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.StudentDao">
+    <!-- 动态sql sql内容是变化的，可以根据条件获取到不同的sql语句
+            前提：传递的是对象
+            实现：<if>、<where>、<foreach>
+     -->
+    <!-- if 判断条件
+        <if test="条件">部分sql</if>
+     -->
+    <select id="selectStudentIf" resultType="entity.Student">
+        select * from student where
+        <if test="name!=null and name!='' ">
+            name = #{name}
+        </if>
+        <if test="age > 0">
+            or age = #{age}
+        </if>
+    </select>
+
+    <!-- where 包含多个if，当其中有一个if成立时，
+                会自动加上where关键字，并删除if中前面多余的and、or
+     -->
+    <select id="selectStudentWhere" resultType="entity.Student">
+        select * from student
+        <where>
+            <if test="name!=null and name!='' ">
+                name = #{name}
+            </if>
+            <if test="age > 0">
+                or age = #{age}
+            </if>
+        </where>
+    </select>
+
+    <!-- foreach  循环java的数组或集合，主要用于sql的in语句
+                比如，查找年龄为18 20 22三者之一的学生信息
+           collection:接口中方法参数的类型，数组则填array，集合则填list
+           item：数组或集合的每个成员，相当于for循环的i
+           open：循环开始时的字符
+           close：循环结束时的字符
+           separator：成员之间的分隔符
+    -->
+    <select id="selectStudentForeach" resultType="entity.Student">
+        select * from student where age in
+        <foreach collection="array" item="stu" open="(" close=")" separator=",">
+            #{stu.age}
+        </foreach>
+    </select>
+</mapper>
