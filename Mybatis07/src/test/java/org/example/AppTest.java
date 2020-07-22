@@ -1,15 +1,12 @@
 package org.example;
 
-import static org.junit.Assert.assertTrue;
-
 import Util.MybatisUtil;
 import com.github.pagehelper.PageHelper;
 import dao.StudentDao;
 import entity.Student;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
-
-import java.util.List;
+import java.util.*;
 
 public class AppTest 
 {
